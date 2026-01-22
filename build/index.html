@@ -1,6 +1,71 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swara's Fashion | Luxury Short Kurtis</title>
+    <meta name="description"
+        content="Discover exquisite short Kurtis in vibrant colors. Luxury fashion for the modern woman.">
+    <link rel="stylesheet" href="static/styles.css">
+    
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="static/images/logo.jpg" alt="Swara's Fashion Logo"
+                    class="brand-logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Collection</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#reviews">Reviews</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls" style="display: flex; gap: 1rem; align-items: center;">
+                <div class="cart-btn" id="cartToggle">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+                <div class="mobile-menu-btn">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Basket</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items injected by JS -->
+            <p style="text-align:center; padding: 2rem;">Your basket is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹ 0</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary"
+                style="width: 100%; text-align: center; display: block;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Product added to bag!</div>
+
+    <!-- Main Content -->
+    
 <!-- Hero Section -->
 <section id="home" class="hero">
     <div class="container">
@@ -9,7 +74,7 @@
             <h1>Elegance in <br>Every Stitch</h1>
             <p>Experience the finest short Kurtis, crafted to suit every color and every mood. Where tradition meets
                 modern luxury.</p>
-            <a href="{{ url_for('shop') }}" class="btn btn-primary">Shop Collection</a>
+            <a href="shop.html" class="btn btn-primary">Shop Collection</a>
         </div>
         <div class="hero-image">
             <img src="../static/images/hero.png" alt="Luxury Swara's Fashion Kurti Model">
@@ -79,7 +144,7 @@
             </article>
         </div>
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="{{ url_for('shop') }}" class="btn btn-primary"
+            <a href="shop.html" class="btn btn-primary"
                 style="background-color: transparent; color: var(--accent-color);">View All Products</a>
         </div>
     </div>
@@ -101,7 +166,7 @@
                     We bring you colors that breathe life into your wardrobe and silhouettes that celebrate your grace.
                 </p>
                 <br>
-                <a href="{{ url_for('shop') }}" class="btn btn-primary">Discover Our Story</a>
+                <a href="shop.html" class="btn btn-primary">Discover Our Story</a>
             </div>
             <div class="about-image-wrapper">
                 <img src="../static/images/hero.png" alt="Swara's Fashion Story" class="about-img_">
@@ -156,4 +221,23 @@
         </div>
     </div>
 </section>
-{% endblock %}
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <img src="static/images/logo.jpg" alt="Swara's Fashion Footer Logo"
+                class="footer-brand-logo">
+            <p>Redefining Luxury Ethnic Wear</p>
+            <br>
+            <div class="copyright">
+                &copy; 2026 Swara's Fashion. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+    
+</body>
+
+</html>

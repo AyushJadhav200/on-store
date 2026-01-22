@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Collection | Swara's Fashion</title>
+    <meta name="description"
+        content="Discover exquisite short Kurtis in vibrant colors. Luxury fashion for the modern woman.">
+    <link rel="stylesheet" href="static/styles.css">
+    
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="static/images/logo.jpg" alt="Swara's Fashion Logo"
+                    class="brand-logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Collection</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#reviews">Reviews</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls" style="display: flex; gap: 1rem; align-items: center;">
+                <div class="cart-btn" id="cartToggle">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+                <div class="mobile-menu-btn">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Basket</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items injected by JS -->
+            <p style="text-align:center; padding: 2rem;">Your basket is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹ 0</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary"
+                style="width: 100%; text-align: center; display: block;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Product added to bag!</div>
+
+    <!-- Main Content -->
+    
+<!-- Page Header -->
+<header class="page-header"
+    style="background-color: var(--bg-secondary); padding: 4rem 0; text-align: center; margin-top: 0;">
+    <div class="container">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Our Collection</h1>
+        <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">Explore our exclusive range of luxury
+            short Kurtis, designed for the modern woman who values tradition and elegance.</p>
+    </div>
+</header>
+
+<!-- Product Grid -->
+<section class="products">
+    <div class="container">
+        <div class="product-grid">
+            
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Royal Silk Emerald" class="product-image"
+                    style="">
+                <h3 class="product-title">Royal Silk Emerald</h3>
+                <span class="product-price">₹ 4,999</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Crimson Velvet" class="product-image"
+                    style="filter: hue-rotate(45deg);">
+                <h3 class="product-title">Crimson Velvet</h3>
+                <span class="product-price">₹ 5,499</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Midnight Azure" class="product-image"
+                    style="filter: hue-rotate(180deg);">
+                <h3 class="product-title">Midnight Azure</h3>
+                <span class="product-price">₹ 4,599</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Sunrise Gold" class="product-image"
+                    style="filter: hue-rotate(20deg);">
+                <h3 class="product-title">Sunrise Gold</h3>
+                <span class="product-price">₹ 5,999</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Rose Petal" class="product-image"
+                    style="filter: hue-rotate(310deg);">
+                <h3 class="product-title">Rose Petal</h3>
+                <span class="product-price">₹ 5,299</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Lavender Dream" class="product-image"
+                    style="filter: hue-rotate(250deg);">
+                <h3 class="product-title">Lavender Dream</h3>
+                <span class="product-price">₹ 4,899</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <img src="static/images/logo.jpg" alt="Swara's Fashion Footer Logo"
+                class="footer-brand-logo">
+            <p>Redefining Luxury Ethnic Wear</p>
+            <br>
+            <div class="copyright">
+                &copy; 2026 Swara's Fashion. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+    
+</body>
+
+</html>

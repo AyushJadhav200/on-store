@@ -1,8 +1,71 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Payment | Swara's Fashion{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | Swara's Fashion</title>
+    <meta name="description"
+        content="Discover exquisite short Kurtis in vibrant colors. Luxury fashion for the modern woman.">
+    <link rel="stylesheet" href="static/styles.css">
+    
+</head>
 
-{% block content %}
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="static/images/logo.jpg" alt="Swara's Fashion Logo"
+                    class="brand-logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Collection</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#reviews">Reviews</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls" style="display: flex; gap: 1rem; align-items: center;">
+                <div class="cart-btn" id="cartToggle">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+                <div class="mobile-menu-btn">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Basket</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items injected by JS -->
+            <p style="text-align:center; padding: 2rem;">Your basket is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹ 0</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary"
+                style="width: 100%; text-align: center; display: block;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Product added to bag!</div>
+
+    <!-- Main Content -->
+    
 <section class="meesho-payment-section">
     <!-- Progress Bar -->
     <div class="checkout-progress-container">
@@ -27,7 +90,7 @@
                     <!-- COD Option -->
                     <label class="meesho-option-card selected">
                         <div class="option-details">
-                            <span class="price-val">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                            <span class="price-val">₹ 0</span>
                             <span class="method-text">Cash on Delivery 💵</span>
                         </div>
                         <input type="radio" name="payment_method" value="Cash on Delivery" checked
@@ -40,8 +103,8 @@
                         <div class="option-content-wrapper" style="width: 100%;">
                             <div class="option-prices">
                                 <p class="online-price-row">
-                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
-                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                    <span class="strike-price">₹ 20</span>
+                                    <span class="active-price">₹ 0</span>
                                 </p>
                                 <span class="save-tag">Save ₹20</span>
                             </div>
@@ -68,8 +131,8 @@
                         <div class="option-content-wrapper">
                             <div class="option-prices">
                                 <p class="online-price-row">
-                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
-                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                    <span class="strike-price">₹ 20</span>
+                                    <span class="active-price">₹ 0</span>
                                 </p>
                                 <span class="save-tag">Save ₹20</span>
                             </div>
@@ -89,8 +152,8 @@
                         <div class="option-content-wrapper">
                             <div class="option-prices">
                                 <p class="online-price-row">
-                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
-                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                    <span class="strike-price">₹ 20</span>
+                                    <span class="active-price">₹ 0</span>
                                 </p>
                                 <span class="save-tag">Save ₹20</span>
                             </div>
@@ -108,8 +171,8 @@
                         <div class="option-content-wrapper">
                             <div class="option-prices">
                                 <p class="online-price-row">
-                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
-                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                    <span class="strike-price">₹ 20</span>
+                                    <span class="active-price">₹ 0</span>
                                 </p>
                                 <span class="save-tag">Save ₹20</span>
                             </div>
@@ -229,4 +292,23 @@
         }
     };
 </script>
-{% endblock %}
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <img src="static/images/logo.jpg" alt="Swara's Fashion Footer Logo"
+                class="footer-brand-logo">
+            <p>Redefining Luxury Ethnic Wear</p>
+            <br>
+            <div class="copyright">
+                &copy; 2026 Swara's Fashion. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+    
+</body>
+
+</html>

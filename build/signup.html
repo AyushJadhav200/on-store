@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Swara's Fashion</title>
+    <meta name="description"
+        content="Discover exquisite short Kurtis in vibrant colors. Luxury fashion for the modern woman.">
+    <link rel="stylesheet" href="static/styles.css">
+    
+<style>
+    header,
+    footer,
+    .cart-sidebar,
+    .cart-overlay,
+    #toast {
+        display: none !important;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f8f4e8 0%, #ebe5d5 100%);
+    }
+</style>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="static/images/logo.jpg" alt="Swara's Fashion Logo"
+                    class="brand-logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop">Collection</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#reviews">Reviews</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+
+                    
+                    <li><a href="login">Login</a></li>
+                    
+                </ul>
+            </nav>
+            <div class="header-controls" style="display: flex; gap: 1rem; align-items: center;">
+                <div class="cart-btn" id="cartToggle">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+                <div class="mobile-menu-btn">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Basket</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items injected by JS -->
+            <p style="text-align:center; padding: 2rem;">Your basket is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹ 0</span>
+            </div>
+            <a href="checkout" class="btn btn-primary"
+                style="width: 100%; text-align: center; display: block;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Product added to bag!</div>
+
+    <!-- Main Content -->
+    
+<section class="auth-standalone">
+    <div class="auth-box">
+        <div class="auth-brand-wrapper">
+            <img src="static/images/logo.jpg" alt="Swara's Fashion Logo" class="auth-logo">
+        </div>
+        <p class="auth-tagline">Luxury Ethnic Wear</p>
+
+        <div class="auth-tabs">
+            <a href="login" class="tab">Login</a>
+            <a href="signup" class="tab active">Sign Up</a>
+        </div>
+
+        
+        
+        
+
+        <!-- Signup Form -->
+        <form action="signup" method="POST" class="auth-simple-form">
+            <input type="text" name="username" required placeholder="Full Name">
+            <input type="email" name="email" required placeholder="Email Address">
+            <input type="tel" name="phone" required placeholder="Phone Number (e.g. 9876543210)">
+            <div class="password-container" style="position: relative;">
+                <input type="password" name="password" id="signup-password" required placeholder="Create Password">
+                <span class="password-toggle" onclick="togglePassword('signup-password', this)"
+                    style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: #c19a33; font-size: 1.2rem;">👁️</span>
+            </div>
+            <button type="submit" class="btn-auth">Create Account</button>
+        </form>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <!-- Google Signup -->
+        <a href="google_login" class="btn-google">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G">
+            Sign up with Google
+        </a>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <img src="static/images/logo.jpg" alt="Swara's Fashion Footer Logo"
+                class="footer-brand-logo">
+            <p>Redefining Luxury Ethnic Wear</p>
+            <br>
+            <div class="copyright">
+                &copy; 2026 Swara's Fashion. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+    
+</body>
+
+</html>
