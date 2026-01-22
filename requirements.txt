@@ -1,0 +1,11 @@
+flask
+flask-sqlalchemy
+flask-login
+Flask-Mail
+Authlib
+requests
+razorpay
+gunicorn
+python-dotenv
+psycopg2-binary
+cashfree-pg

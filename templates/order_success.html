@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Order Placed | Swara's Fashion{% endblock %}
+
+{% block content %}
+<section class="order-success-container">
+    <div class="success-card">
+        <!-- Animated Success Icon -->
+        <div class="success-icon-wrapper">
+            <svg class="checkmark-svg" viewBox="0 0 52 52">
+                <path d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
+        </div>
+
+        <h1 class="success-title">Order Placed!</h1>
+        <p class="success-subtitle">Thank you for your purchase. We've received your order and are getting it ready for
+            shipment.</p>
+
+        <!-- Receipt Card -->
+        <div class="detailed-receipt">
+            <span class="receipt-header">Order Summary</span>
+
+            <div class="receipt-row">
+                <span>Order ID</span>
+                <span class="order-badge">#{{ order.id }}</span>
+            </div>
+
+            <div class="receipt-row">
+                <span>Payment Method</span>
+                <strong>{{ order.payment_method }}</strong>
+            </div>
+
+            <div class="receipt-row">
+                <span>Total Amount Paid</span>
+                <strong>₹ {{ "{:,.0f}".format(order.total_amount) }}</strong>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="success-actions">
+            <a href="{{ url_for('shop') }}" class="btn-premium btn-purple-gradient">Continue Shopping</a>
+            <a href="{{ url_for('home') }}" class="btn-premium btn-outline-minimal">Back to Home</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

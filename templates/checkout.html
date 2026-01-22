@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout | Swara's Fashion{% endblock %}
+
+{% block content %}
+<section class="checkout-section">
+    <div class="container">
+        <h1 class="page-title">Checkout</h1>
+
+        <div class="checkout-grid">
+            <!-- Left Column: Details -->
+            <div class="checkout-left">
+                <!-- Product Details -->
+                <div class="checkout-card">
+                    <h2 class="card-title">Product Details</h2>
+
+                    {% if cart|length == 0 %}
+                    <p>Your cart is empty.</p>
+                    <a href="{{ url_for('shop') }}" class="btn btn-primary">Shop Now</a>
+                    {% else %}
+                    {% for id, item in cart.items() %}
+                    <div class="checkout-item">
+                        <div class="checkout-item-img">
+                            <img src="{{ item.image }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="checkout-item-info">
+                            <h3>{{ item.name }}</h3>
+                            <p class="checkout-price">₹ {{ "{:,.0f}".format(item.price) }}</p>
+                            <p class="checkout-meta">Qty: {{ item.quantity }}</p>
+                            <p class="checkout-seller">Sold by: Swara's Fashion</p>
+                            <span class="free-delivery">Free Delivery</span>
+                        </div>
+                        <div class="checkout-item-action">
+                            <a href="#" onclick="toggleCart(); return false;" class="edit-btn">EDIT</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                <!-- Delivery Address -->
+                <div class="checkout-card address-card">
+                    <div class="card-header-row">
+                        <h2 class="card-title">Delivery Address</h2>
+                        <span class="change-btn" onclick="openAddressModal()">CHANGE</span>
+                    </div>
+                    <div class="address-details">
+                        <h3 class="user-name">{{ current_user.username if current_user.is_authenticated else 'Guest
+                            User' }}</h3>
+                        {% if current_user.is_authenticated and current_user.address %}
+                        <p>{{ current_user.address }}</p>
+                        <p>{{ current_user.city }} - {{ current_user.pincode }}</p>
+                        <p>Phone: {{ current_user.phone }}</p>
+                        {% else %}
+                        <p style="color: #ff4444;">No delivery address added.</p>
+                        <p>Please click CHANGE to add details.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Price Summary -->
+            {% if cart|length > 0 %}
+            <div class="checkout-right">
+                <div class="checkout-card price-card">
+                    <h2 class="card-title">Price Details ({{ cart|length }} Items)</h2>
+
+                    <div class="price-row">
+                        <span>Total Product Price</span>
+                        <span>+ ₹ {{ "{:,.0f}".format(total_price) }}</span>
+                    </div>
+
+                    <div class="price-row discount">
+                        <span>Total Discounts</span>
+                        <span>- ₹ {{ "{:,.0f}".format(discount) }}</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="price-row total">
+                        <span>Order Total</span>
+                        <span>₹ {{ "{:,.0f}".format(final_total) }}</span>
+                    </div>
+
+                    {% if discount > 0 %}
+                    <div class="discount-banner">
+                        Yay! Your total discount is <span class="highlight">₹ {{ "{:,.0f}".format(discount) }}</span>
+                    </div>
+                    {% endif %}
+
+                    <p class="info-text">Clicking on 'Continue' will not deduct any money</p>
+
+                    <a href="{{ url_for('payment') }}" class="btn btn-primary"
+                        style="width: auto; display: inline-block; padding: 0.8rem 2rem; margin-top: 1rem;">Continue</a>
+
+                    <div class="trust-badge">
+                        <div class="shield-icon">🛡</div>
+                        <div>
+                            <strong>Your Safety, Our Priority</strong>
+                            <p>We ensure your package is safe at every point of contact.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Address Modal -->
+<div id="addressModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeAddressModal()">&times;</span>
+        <h2>Update Address</h2>
+        <form action="{{ url_for('update_address') }}" method="POST">
+            <div class="form-group">
+                <label>Full Address</label>
+                <input type="text" name="address" required value="{{ current_user.address or '' }}"
+                    placeholder="House No, Street Area">
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" name="city" required value="{{ current_user.city or '' }}" placeholder="Mumbai">
+            </div>
+            <div class="form-group">
+                <label>Pincode</label>
+                <input type="text" name="pincode" required value="{{ current_user.pincode or '' }}"
+                    placeholder="400001">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" required value="{{ current_user.phone or '' }}"
+                    placeholder="+91 98765 43210">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Save Address</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('addressModal');
+    function openAddressModal() {
+        modal.style.display = 'block';
+    }
+    function closeAddressModal() {
+        modal.style.display = 'none';
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+{% endblock %}

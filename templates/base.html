@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Swara's Fashion | Luxury Short Kurtis{% endblock %}</title>
+    <meta name="description"
+        content="Discover exquisite short Kurtis in vibrant colors. Luxury fashion for the modern woman.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="{{ url_for('home') }}" class="logo-wrapper">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Swara's Fashion Logo"
+                    class="brand-logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('shop') }}">Collection</a></li>
+                    <li><a href="{{ url_for('home', _anchor='about') }}">About</a></li>
+                    <li><a href="{{ url_for('home', _anchor='reviews') }}">Reviews</a></li>
+                    <li><a href="{{ url_for('home', _anchor='contact') }}">Contact</a></li>
+
+                    {% if current_user.is_authenticated %}
+                    <li><a href="#" style="color: var(--accent-color);">Hello, {{ current_user.username }}</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div class="header-controls" style="display: flex; gap: 1rem; align-items: center;">
+                <div class="cart-btn" id="cartToggle">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+                <div class="mobile-menu-btn">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Basket</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items injected by JS -->
+            <p style="text-align:center; padding: 2rem;">Your basket is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹ 0</span>
+            </div>
+            <a href="{{ url_for('checkout') }}" class="btn btn-primary"
+                style="width: 100%; text-align: center; display: block;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Product added to bag!</div>
+
+    <!-- Main Content -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Swara's Fashion Footer Logo"
+                class="footer-brand-logo">
+            <p>Redefining Luxury Ethnic Wear</p>
+            <br>
+            <div class="copyright">
+                &copy; 2026 Swara's Fashion. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

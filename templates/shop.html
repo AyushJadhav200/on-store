@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Shop Collection | Swara's Fashion{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="page-header"
+    style="background-color: var(--bg-secondary); padding: 4rem 0; text-align: center; margin-top: 0;">
+    <div class="container">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Our Collection</h1>
+        <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">Explore our exclusive range of luxury
+            short Kurtis, designed for the modern woman who values tradition and elegance.</p>
+    </div>
+</header>
+
+<!-- Product Grid -->
+<section class="products">
+    <div class="container">
+        <div class="product-grid">
+            {% for product in products %}
+            <article class="product-card">
+                <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image"
+                    style="{{ product.style }}">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <span class="product-price">₹ {{ "{:,.0f}".format(product.price) }}</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

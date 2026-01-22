@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-subtitle">New Collection 2026</span>
+            <h1>Elegance in <br>Every Stitch</h1>
+            <p>Experience the finest short Kurtis, crafted to suit every color and every mood. Where tradition meets
+                modern luxury.</p>
+            <a href="{{ url_for('shop') }}" class="btn btn-primary">Shop Collection</a>
+        </div>
+        <div class="hero-image">
+            <img src="../static/images/hero.png" alt="Luxury Swara's Fashion Kurti Model">
+        </div>
+    </div>
+</section>
+
+<!-- Featured Section -->
+<section id="featured" class="products" style="background-color: #fff;">
+    <div class="container">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="product-grid">
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Sunrise Gold Kurti" class="product-image"
+                    style="filter: hue-rotate(20deg);">
+                <h3 class="product-title">Sunrise Gold</h3>
+                <span class="product-price">₹ 5,999</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Rose Petal Kurti" class="product-image"
+                    style="filter: hue-rotate(310deg);">
+                <h3 class="product-title">Rose Petal</h3>
+                <span class="product-price">₹ 5,299</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Lavender Dream Kurti" class="product-image"
+                    style="filter: hue-rotate(250deg);">
+                <h3 class="product-title">Lavender Dream</h3>
+                <span class="product-price">₹ 4,899</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Product Collection Preview -->
+<section id="collection" class="products">
+    <div class="container">
+        <h2 class="section-title">The Royal Collection</h2>
+        <div class="product-grid">
+            <!-- Product Card 1 -->
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Royal Silk Kurti" class="product-image">
+                <h3 class="product-title">Royal Silk Emerald</h3>
+                <span class="product-price">₹ 4,999</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+
+            <!-- Product Card 2 (Using same placeholder for demo) -->
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Crimson Velvet Kurti" class="product-image"
+                    style="filter: hue-rotate(45deg);">
+                <h3 class="product-title">Crimson Velvet</h3>
+                <span class="product-price">₹ 5,499</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+
+            <!-- Product Card 3 (Using same placeholder for demo) -->
+            <article class="product-card">
+                <img src="../static/images/product1.png" alt="Midnight Blue Kurti" class="product-image"
+                    style="filter: hue-rotate(180deg);">
+                <h3 class="product-title">Midnight Azure</h3>
+                <span class="product-price">₹ 4,599</span>
+                <button class="btn btn-primary">Add to Bag</button>
+            </article>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{{ url_for('shop') }}" class="btn btn-primary"
+                style="background-color: transparent; color: var(--accent-color);">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">The Swara's Legacy</h2>
+                <h4
+                    style="margin-bottom: 2rem; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px;">
+                    Where Tradition Meets Modernity</h4>
+                <p>At <strong>Swara's Fashion</strong>, we believe that true luxury lies in the details. Born from a
+                    passion for India's rich textile heritage, our brand is dedicated to the modern woman who cherishes
+                    her roots while embracing contemporary style.</p>
+                <p>Every piece in our collection is a labor of love, crafted with precision and an eye for perfection.
+                    We bring you colors that breathe life into your wardrobe and silhouettes that celebrate your grace.
+                </p>
+                <br>
+                <a href="{{ url_for('shop') }}" class="btn btn-primary">Discover Our Story</a>
+            </div>
+            <div class="about-image-wrapper">
+                <img src="../static/images/hero.png" alt="Swara's Fashion Story" class="about-img_">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="reviews" class="testimonials">
+    <div class="container">
+        <h2 class="section-title">Loved by Our Clients</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="review-text">"Absolutely stunning quality! The colors are exactly as shown. Swara's Fashion is
+                    now my go-to for ethnic wear."</p>
+                <div class="customer-info">
+                    <span class="customer-name">- Priya Sharma</span>
+                    <span class="verified">Verified Buyer</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="review-text">"The fit is perfect and the fabric feels so premium. It exceeded my expectations
+                    in every way."</p>
+                <div class="customer-info">
+                    <span class="customer-name">- Anjali Mehta</span>
+                    <span class="verified">Verified Buyer</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="review-text">"Elegant designs that truly stand out. I received so many compliments on the
+                    Royal Silk Kurti."</p>
+                <div class="customer-info">
+                    <span class="customer-name">- Sneha Kapoor</span>
+                    <span class="verified">Verified Buyer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section id="newsletter" class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-wrapper">
+            <h2>Join Our Exclusive Circle</h2>
+            <p>Subscribe to receive updates on new launches, private sales, and style tips directly to your inbox.</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

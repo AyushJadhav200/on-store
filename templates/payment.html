@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block title %}Payment | Swara's Fashion{% endblock %}
+
+{% block content %}
+<section class="meesho-payment-section">
+    <!-- Progress Bar -->
+    <div class="checkout-progress-container">
+        <div class="progress-step active">
+            <div class="step-circle">✓</div>
+            <span>Review</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step current">
+            <div class="step-circle">2</div>
+            <span>Payment</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="checkout-grid">
+            <!-- Left Column: Payment Methods -->
+            <div class="payment-methods-column">
+                <h2 class="section-title">Select Payment Method</h2>
+
+                <form id="paymentForm" action="{{ url_for('place_order') }}" method="POST">
+                    <!-- COD Option -->
+                    <label class="meesho-option-card selected">
+                        <div class="option-details">
+                            <span class="price-val">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                            <span class="method-text">Cash on Delivery 💵</span>
+                        </div>
+                        <input type="radio" name="payment_method" value="Cash on Delivery" checked
+                            onchange="updateSelectedCard(this)">
+                        <div class="meesho-radio-status"></div>
+                    </label>
+
+                    <!-- Scan & Pay (My QR) -->
+                    <label class="meesho-option-card">
+                        <div class="option-content-wrapper" style="width: 100%;">
+                            <div class="option-prices">
+                                <p class="online-price-row">
+                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
+                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                </p>
+                                <span class="save-tag">Save ₹20</span>
+                            </div>
+                            <div class="option-text-row">
+                                <span class="method-text">Scan & Pay (Shop QR) 🖼️</span>
+                            </div>
+
+                            <!-- QR Code Hidden by Default -->
+                            <div id="qr-code-display" class="qr-code-container"
+                                style="display: none; margin-top: 1rem;">
+                                <img src="/static/images/shop_payment_qr.png" alt="Shop QR Code" class="qr-image">
+                                <p class="qr-instruction">Scan this QR to pay directly to Ayush Jadhav</p>
+                                <p style="font-size: 0.75rem; color: #ef4444; margin-top: 0.5rem; font-weight: 700;">⚠️
+                                    After paying, click 'Place Order' below</p>
+                            </div>
+                        </div>
+                        <input type="radio" name="payment_method" value="QR Payment"
+                            onchange="updateSelectedCard(this)">
+                        <div class="meesho-radio-status"></div>
+                    </label>
+
+                    <!-- UPI Option (Google Pay, Paytm) -->
+                    <label class="meesho-option-card">
+                        <div class="option-content-wrapper">
+                            <div class="option-prices">
+                                <p class="online-price-row">
+                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
+                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                </p>
+                                <span class="save-tag">Save ₹20</span>
+                            </div>
+                            <div class="option-text-row">
+                                <span class="method-text">UPI (Google Pay, Paytm, PhonePe) 📲</span>
+                            </div>
+                        </div>
+                        <div class="extra-offer-banner">
+                            🚀 Instant discount applied via UPI
+                        </div>
+                        <input type="radio" name="payment_method" value="UPI" onchange="updateSelectedCard(this)">
+                        <div class="meesho-radio-status"></div>
+                    </label>
+
+                    <!-- Online/Card Option -->
+                    <label class="meesho-option-card">
+                        <div class="option-content-wrapper">
+                            <div class="option-prices">
+                                <p class="online-price-row">
+                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
+                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                </p>
+                                <span class="save-tag">Save ₹20</span>
+                            </div>
+                            <div class="option-text-row">
+                                <span class="method-text">Debit / Credit Card / Netbanking 💳</span>
+                            </div>
+                        </div>
+                        <input type="radio" name="payment_method" value="Online Payment"
+                            onchange="updateSelectedCard(this)">
+                        <div class="meesho-radio-status"></div>
+                    </label>
+
+                    <!-- Cashfree Option -->
+                    <label class="meesho-option-card">
+                        <div class="option-content-wrapper">
+                            <div class="option-prices">
+                                <p class="online-price-row">
+                                    <span class="strike-price">₹ {{ "{:,.0f}".format(final_total + 20) }}</span>
+                                    <span class="active-price">₹ {{ "{:,.0f}".format(final_total) }}</span>
+                                </p>
+                                <span class="save-tag">Save ₹20</span>
+                            </div>
+                            <div class="option-text-row">
+                                <span class="method-text">Cashfree (Cards, UPI, Wallets) 💸</span>
+                            </div>
+                        </div>
+                        <div class="extra-offer-banner">
+                            ✨ Safe & Secure via Cashfree
+                        </div>
+                        <input type="radio" name="payment_method" value="Cashfree" onchange="updateSelectedCard(this)">
+                        <div class="meesho-radio-status"></div>
+                    </label>
+
+                    <!-- Reselling Card (UI Only) -->
+                    <div class="reselling-card">
+                        <div class="reselling-info">
+                            <h3>Reselling the order?</h3>
+                            <p>Click on 'Yes' to add Final Price</p>
+                        </div>
+                        <div class="reselling-toggle">
+                            <button type="button" class="toggle-btn active">No</button>
+                            <button type="button" class="toggle-btn">Yes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Column: Price Summary -->
+            <div class="price-details-column">
+                <div class="meesho-summary-card">
+                    <h2 class="card-title">Price Details ({{ cart|length }} Items)</h2>
+
+                    <div class="price-row">
+                        <span>Total Product Price</span>
+                        <span>+ ₹ {{ "{:,.0f}".format(total_price) }}</span>
+                    </div>
+
+                    <div class="price-row success-text">
+                        <span>Total Discounts</span>
+                        <span>- ₹ {{ "{:,.0f}".format(total_price - final_total) }}</span>
+                    </div>
+
+                    <div class="price-divider"></div>
+
+                    <div class="price-row final-total-row">
+                        <span>Order Total</span>
+                        <span>₹ {{ "{:,.0f}".format(final_total) }}</span>
+                    </div>
+
+                    <div class="discount-celebration">
+                        🎉 Yay! Your total discount is ₹ {{ "{:,.0f}".format(total_price - final_total) }}
+                    </div>
+
+                    <button type="button" id="placeOrderBtn" class="meesho-place-order-btn">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment SDKs -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+
+<script>
+    function updateSelectedCard(radio) {
+        document.querySelectorAll('.meesho-option-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        radio.closest('.meesho-option-card').classList.add('selected');
+
+        // Handle QR Code Visibility
+        const qrDisplay = document.getElementById('qr-code-display');
+        if (radio.value === 'QR Payment') {
+            qrDisplay.style.display = 'block';
+        } else {
+            qrDisplay.style.display = 'none';
+        }
+    }
+
+    // Initialize Cashfree
+    const cashfree = Cashfree({
+        mode: "{{ 'sandbox' if 'sandbox' in config['CASHFREE_BASE_URL'] else 'production' }}"
+    });
+
+    document.getElementById('placeOrderBtn').onclick = async function (e) {
+        const form = document.getElementById('paymentForm');
+        const paymentMethod = form.querySelector('input[name="payment_method"]:checked').value;
+
+        if (paymentMethod === 'Online Payment' || paymentMethod === 'UPI') {
+            // SHOW LOADING STATE
+            this.innerText = 'Initializing...';
+            this.disabled = true;
+
+            try {
+                // 1. Create Order on Backend
+                const response = await fetch('/create_payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                    this.innerText = 'Place Order';
+                    this.disabled = false;
+                    return;
+                }
+
+                // 2. Open Razorpay Checkout
+                const options = {
+                    "key": data.key_id,
+                    "amount": data.amount * 100,
+                    "currency": "INR",
+                    "name": "Swara's Fashion",
+                    "description": "Payment for your order",
+                    "order_id": data.order_id,
+                    "handler": async function (response) {
+                        // 3. Verify Payment on Backend
+                        const verifyRes = await fetch('/verify_payment', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature
+                            })
+                        });
+                        const verifyData = await verifyRes.json();
+
+                        if (verifyData.success) {
+                            window.location.href = `/order_success/${verifyData.order_id}`;
+                        } else {
+                            alert('Payment verification failed.');
+                            location.reload();
+                        }
+                    },
+                    "prefill": {
+                        "name": "{{ current_user.username }}",
+                        "email": "{{ current_user.email }}",
+                        "contact": "{{ current_user.phone }}"
+                    },
+                    "theme": {
+                        "color": "#8E24AA"
+                    }
+                };
+                const rzp = new Razorpay(options);
+                rzp.open();
+
+                rzp.on('payment.failed', function (response) {
+                    alert("Payment Failed: " + response.error.description);
+                    location.reload();
+                });
+
+                this.innerText = 'Place Order';
+                this.disabled = false;
+
+            } catch (err) {
+                console.error(err);
+                alert('Something went wrong. Please try again.');
+                this.innerText = 'Place Order';
+                this.disabled = false;
+            }
+        } else if (paymentMethod === 'Cashfree') {
+            // CASHFREE FLOW
+            this.innerText = 'Initializing...';
+            this.disabled = true;
+
+            try {
+                const response = await fetch('/create_cashfree_order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                    this.innerText = 'Place Order';
+                    this.disabled = false;
+                    return;
+                }
+
+                // Call Cashfree SDK
+                let checkoutOptions = {
+                    paymentSessionId: data.payment_session_id,
+                    redirectTarget: "_self", // Or "_modal" for overlay
+                };
+
+                cashfree.checkout(checkoutOptions);
+
+            } catch (err) {
+                console.error(err);
+                alert('Cashfree initialization failed.');
+                this.innerText = 'Place Order';
+                this.disabled = false;
+            }
+        } else {
+            // Cash on Delivery - Submit to OTP route
+            form.submit();
+        }
+    };
+</script>
+{% endblock %}

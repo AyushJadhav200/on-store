@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Login | Swara's Fashion{% endblock %}
+
+{% block extra_css %}
+<style>
+    header,
+    footer,
+    .cart-sidebar,
+    .cart-overlay,
+    #toast {
+        display: none !important;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f8f4e8 0%, #ebe5d5 100%);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="auth-standalone">
+    <div class="auth-box">
+        <div class="auth-brand-wrapper">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Swara's Fashion Logo" class="auth-logo">
+        </div>
+        <p class="auth-tagline">Luxury Ethnic Wear</p>
+
+        <div class="auth-tabs">
+            <a href="{{ url_for('login') }}" class="tab active">Login</a>
+            <a href="{{ url_for('signup') }}" class="tab">Sign Up</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Login Form -->
+        <form action="{{ url_for('login') }}" method="POST" class="auth-simple-form">
+            <input type="email" name="email" required placeholder="Email Address">
+            <div class="password-container" style="position: relative;">
+                <input type="password" name="password" id="login-password" required placeholder="Password">
+                <span class="password-toggle" onclick="togglePassword('login-password', this)"
+                    style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: #c19a33; font-size: 1.2rem;">👁️</span>
+            </div>
+            <div style="text-align: right; margin: -0.5rem 0 1rem;">
+                <a href="{{ url_for('forgot_password') }}"
+                    style="color: #c19a33; font-size: 0.85rem; text-decoration: none;">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-auth">Continue</button>
+        </form>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <!-- Google Login -->
+        <a href="{{ url_for('google_login') }}" class="btn-google">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G">
+            Sign in with Google
+        </a>
+    </div>
+</section>
+{% endblock %}

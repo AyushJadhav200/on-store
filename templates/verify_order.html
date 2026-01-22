@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Verify Order | Swara's Fashion{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="container">
+        <div class="auth-form-wrapper" style="text-align: center;">
+            <h2 class="section-title">Confirm Order</h2>
+            <p style="color: #666; margin-bottom: 2rem;">For your security, please enter the code sent to your email.
+            </p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert {{ category }}"
+                style="background: {{ '#e6f4ea' if category == 'info' else '#fde8e8' }}; color: {{ '#1e8e3e' if category == 'info' else '#c81e1e' }}; border: 1px solid {{ '#ceead6' if category == 'info' else '#fecaca' }};">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('verify_order') }}" method="POST" class="auth-form">
+                <div class="form-group">
+                    <input type="text" name="otp" required placeholder="Enter Verification Code"
+                        style="text-align: center; letter-spacing: 5px; font-size: 1.5rem; font-weight: bold;">
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; background-color: #6a1b9a; border-color: #6a1b9a;">Confirm & Place
+                    Order</button>
+            </form>
+            <p class="auth-footer">
+                <a href="{{ url_for('payment') }}" style="color: #666;">Cancel / Go Back</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

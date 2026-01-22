@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Swara's Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c19a33;
+            --bg-body: #f4f7fe;
+            --bg-side: #ffffff;
+            --text-main: #2d3748;
+            --text-mute: #718096;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--bg-side);
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .brand-section {
+            padding: 0 2rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-logo-wrapper {
+            padding: 0 1rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .admin-logo {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-mute);
+            font-weight: 500;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(193, 154, 51, 0.05);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 260px;
+            padding: 2.5rem;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .page-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-view-store {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .btn-view-store:hover {
+            background: #f8fafc;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-mute);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Tables */
+        .card-table {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table th {
+            text-align: left;
+            padding: 1rem 2rem;
+            background: #f8fafc;
+            color: var(--text-mute);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-table td {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.9rem;
+        }
+
+        .admin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .user-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: #edf2f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-mute);
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .status-placed {
+            background: #e6f4ea;
+            color: #1e8e3e;
+        }
+
+        .status-pending {
+            background: #fff8e1;
+            color: #f57f17;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 80px;
+            }
+
+            .brand-name,
+            .nav-link span {
+                display: none;
+            }
+
+            .nav-link {
+                justify-content: center;
+                padding: 1.5rem 0;
+            }
+
+            .main-content {
+                margin-left: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-logo-wrapper">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Swara's Fashion Logo"
+                class="admin-logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('admin_panel') }}" class="nav-link active"><span>📊</span>
+                    <span>Dashboard</span></a></li>
+            <li><a href="{{ url_for('admin_users') }}" class="nav-link"><span>👥</span> <span>Users</span></a></li>
+            <li><a href="#" class="nav-link"><span>📦</span> <span>Orders</span></a></li>
+            <li><a href="#" class="nav-link"><span>👗</span> <span>Products</span></a></li>
+            <li><a href="#" class="nav-link"><span>⚙️</span> <span>Settings</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header-bar">
+            <div class="page-title">
+                <h1>Dashboard Overview</h1>
+            </div>
+            <div class="top-actions">
+                <a href="{{ url_for('home') }}" class="btn-view-store">View Store</a>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Users</span>
+                <span class="stat-value">{{ users|length }}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Total Orders</span>
+                <span class="stat-value">{{ orders|length }}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Total Revenue</span>
+                <span class="stat-value">₹ {{ "{:,.0f}".format(orders|sum(attribute='total_amount')) }}</span>
+            </div>
+        </div>
+
+        <!-- Recent Users -->
+        <div class="card-table">
+            <div class="card-header">
+                <h2>Recent Customers</h2>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Location</th>
+                        <th>Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users[:5] %}
+                    <tr>
+                        <td>
+                            <div class="user-name">
+                                <div class="user-avatar">{{ user.username[0]|upper }}</div>
+                                {{ user.username }}
+                            </div>
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.city if user.city else '—' }}</td>
+                        <td>{{ user.phone if user.phone else '—' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="card-table">
+            <div class="card-header">
+                <h2>Latest Transactions</h2>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders[:5]|reverse %}
+                    <tr>
+                        <td>#{{ order.id }}</td>
+                        <td>{{ order.date.strftime('%d %b, %Y') }}</td>
+                        <td style="font-weight: 600;">₹ {{ "{:,.0f}".format(order.total_amount) }}</td>
+                        <td><span class="status-badge status-placed">{{ order.status }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
